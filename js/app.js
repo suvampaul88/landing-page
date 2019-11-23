@@ -36,13 +36,6 @@ function getNavbarLinkArray() {
 }
 
 
-//get array of sections
-/*function getSectionsArray() {
-  'use strict';
-  const sectionsArray = [].slice.call(sections);
-  return sectionsArray;
-}*/
-
 //isInViewport is copied and pasted from "https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/"
 function isInViewport (elem) {
     const bounding = elem.getBoundingClientRect();
@@ -106,29 +99,6 @@ function addActiveClass() {
 
 
 
-//one
-function addActiveSectionHandler(elem) {
-
-  'use strict';
-  
-  document.addEventListener('scroll', function(event) {
-
-   	event.preventDefault();
-
-   		if(isInViewport(elem) === true) {
-   			console.log('adding Class');
-   			elem.classList.add("your-active-class");
-
-   		} else {
-   		 	console.log('removing Class')
-   		 	elem.classList.remove("your-active-class");
-  		} 
-	})	 
-}
-
-
-
-
 
 // Scroll to anchor ID using scrollTO event
 function addNavClickHandler(navlink) {
@@ -166,9 +136,6 @@ function initializeEvents() {
 
   //Set sections as active
   addActiveClass()
-  //const allSections = getSectionsArray();
-  //allSections.forEach(addActiveSectionHandler);
-
 }
 
 document.addEventListener('DOMContentLoaded', initializeEvents);
