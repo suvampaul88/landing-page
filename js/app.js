@@ -27,12 +27,32 @@ const sections = document.getElementsByTagName('section');
  * 
 */
 
+//get array of nav links
 function getNavbarLinkArray() {
   'use strict';
   const navlinks = document.querySelectorAll('.nav-link');
   const navlinksArray = [].slice.call(navlinks);
   return navlinksArray;
 }
+
+
+//get array of sections
+/*function getSectionsArray() {
+  'use strict';
+  const sectionsArray = [].slice.call(sections);
+  return sectionsArray;
+}*/
+
+//isInViewport is copied and pasted from "https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/"
+function isInViewport (elem) {
+    const bounding = elem.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
 
 /**
  * End Helper Functions
@@ -62,6 +82,52 @@ function buildTheNav () {
 }
 
 // Add class 'active' to section when near top of viewport
+
+function addActiveClass() {
+  'use strict';
+
+  //document.body.getElementsByTagName("section").section1.classList.remove("your-active-class")
+   document.addEventListener('scroll', function(event) {
+
+   	 event.preventDefault();
+
+   	for (var i = 0; i < sections.length; i++) {
+
+   		if(isInViewport(sections[i]) === true) {
+   			console.log('adding Class');
+   			sections[i].classList.add("your-active-class");
+   		} else {
+   		    console.log('removing Class')
+   		    sections[i].classList.remove("your-active-class");
+   		} 
+	 }	 
+  });
+}
+
+
+
+//one
+function addActiveSectionHandler(elem) {
+
+  'use strict';
+  
+  document.addEventListener('scroll', function(event) {
+
+   	event.preventDefault();
+
+   		if(isInViewport(elem) === true) {
+   			console.log('adding Class');
+   			elem.classList.add("your-active-class");
+
+   		} else {
+   		 	console.log('removing Class')
+   		 	elem.classList.remove("your-active-class");
+  		} 
+	})	 
+}
+
+
+
 
 
 // Scroll to anchor ID using scrollTO event
@@ -99,10 +165,11 @@ function initializeEvents() {
   navlinks.forEach(addNavClickHandler);
 
   //Set sections as active
-
+  addActiveClass()
+  //const allSections = getSectionsArray();
+  //allSections.forEach(addActiveSectionHandler);
 
 }
-
 
 document.addEventListener('DOMContentLoaded', initializeEvents);
 
