@@ -36,7 +36,7 @@ function getNavbarLinkArray() {
 }
 
 
-//isInViewport is copied and pasted from "https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/"
+//isInViewport is inspired from "https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/"
 function isInViewport (elem) {
     const bounding = elem.getBoundingClientRect();
     return (
@@ -79,25 +79,43 @@ function buildTheNav () {
 function addActiveClass() {
   'use strict';
 
-  //document.body.getElementsByTagName("section").section1.classList.remove("your-active-class")
    document.addEventListener('scroll', function(event) {
 
-   	 event.preventDefault();
+   	event.preventDefault();
 
    	for (var i = 0; i < sections.length; i++) {
 
    		if(isInViewport(sections[i]) === true) {
-   			console.log('adding Class');
-   			sections[i].classList.add("your-active-class");
+   			sections[i].classList.add("section-active-class");
    		} else {
-   		    console.log('removing Class')
-   		    sections[i].classList.remove("your-active-class");
+   		    sections[i].classList.remove("section-active-class");
    		} 
 	 }	 
   });
 }
 
 
+
+//Add an active state to your navigation items when a section is in the viewport.
+function addNavitemActiveClass() {
+
+  'use strict';
+	const navlist = document.getElementsByTagName('li');
+
+   document.addEventListener('scroll', function(event) {
+
+   	event.preventDefault();
+
+   	for (var i = 0; i < sections.length; i++) {
+
+   		if(isInViewport(sections[i]) === true) {
+   			navlist[i].classList.add("navlink-active-class")
+   		} else {
+   			navlist[i].classList.remove("navlink-active-class")
+   		} 
+	 }	 
+  });
+}
 
 
 // Scroll to anchor ID using scrollTO event
@@ -136,6 +154,9 @@ function initializeEvents() {
 
   //Set sections as active
   addActiveClass()
+
+  //set navlinks as active
+  addNavitemActiveClass()
 }
 
 document.addEventListener('DOMContentLoaded', initializeEvents);
