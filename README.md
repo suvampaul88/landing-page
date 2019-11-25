@@ -1,13 +1,11 @@
 # Landing Page Project
 
-## Table of Contents
 
-* [Instructions](#instructions)
+## About the project
 
-## Instructions
+This project is about making a static page more active by manupulating the DOM using javascript. There are three main files in this project that makes this happen:
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+* index.html
+* css/styles.csws
+* js/app.js
